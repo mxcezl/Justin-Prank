@@ -1,16 +1,12 @@
-# Check if user is admin
-#$currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
-#$isAdmin = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-
 # Get current dir
 $dir = Get-Location
 
 # URL to download
-$url = "https://raw.githubusercontent.com/FredericMartinez/justin-hack/master/install.sh"
+$url = "https://raw.githubusercontent.com/mxcezl/Justin-Hack-Windows/master/runner.ps1"
 
 # Download file
 $client = new-object System.Net.WebClient
-$client.DownloadFile($url, "$dir\install.ps1")
+$client.DownloadFile($url, "$dir\runner.ps1")
 
 # Run file
-& "$dir\install.ps1"
+& "$dir\runner.ps1"
