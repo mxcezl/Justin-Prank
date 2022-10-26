@@ -26,4 +26,4 @@ foreach($imageName in $imagesName){
 }
 
 # Use task manager to set random wallpaper every x minutes
-schtasks /create /sc minute /mo 1 /tn "JustinWPPrank" /tr "powershell.exe -windowstyle Hidden -nologo -file $jhPath\$changerName" /f
+#schtasks /create /sc minute /mo 1 /tn "JustinWPPrank" /tr "powershell.exe -windowstyle Hidden -nologo -file $jhPath\$changerName" /f
