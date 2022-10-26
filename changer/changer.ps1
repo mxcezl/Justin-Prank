@@ -29,4 +29,4 @@ namespace Win32{
 add-type $code 
 
 #Apply the Change on the system 
-[Win32.Wallpaper]::SetWallpaper("$imagesDir/$newBackgroungImageName")
+[Win32.Wallpaper]::SetWallpaper("$imagesDir\$newBackgroungImageName")
