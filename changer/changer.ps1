@@ -7,19 +7,26 @@ $wallpaperName = (Get-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wal
 Write-Host "Current wallpaper: $wallpaperName"
 
 # Get random image from jhimgs folder (except current wallpaper)
-$image = Get-ChildItem -Path $imagesDir | Where-Object {$_.Name -ne $wallpaperName} | Get-Random
-Write-Host "New wallpaper: $image"
+$newBackgroungImageName = Get-ChildItem -Path $imagesDir | Where-Object {$_.Name -ne $wallpaperName} | Get-Random
+Write-Host "New wallpaper: $newBackgroungImageName"
 
 # Set the random image as desktop background
-$regPath = "HKCU\Control Panel\Desktop"
-reg add $regPath /v Wallpaper /f /t REG_SZ /d "$imagesDir\$image" | Out-Null
-reg add $regPath /v WallpaperStyle /f /t REG_SZ /d 10 | Out-Null
+$code = @' 
+using System.Runtime.InteropServices; 
+namespace Win32{ 
+    
+     public class Wallpaper{ 
+        [DllImport("user32.dll", CharSet=CharSet.Auto)] 
+         static extern int SystemParametersInfo (int uAction , int uParam , string lpvParam , int fuWinIni) ; 
+         
+         public static void SetWallpaper(string thePath){ 
+            SystemParametersInfo(20,0,thePath,3); 
+         }
+    }
+ } 
+'@
 
-# Refresh desktop
-RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters
+add-type $code 
 
-# Wait for 10 seconds
-Start-Sleep -s 10
-
-# Re-refresh desktop because sometimes it doesn't work
-RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters
+#Apply the Change on the system 
+[Win32.Wallpaper]::SetWallpaper("$imagesDir/$newBackgroungImageName")

