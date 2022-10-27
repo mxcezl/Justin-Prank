@@ -4,7 +4,7 @@ $imagesName = @("justin", "selena", "justin_jesus", "justin_christmas", "justin_
 # Get current dir
 $imgExtension = ".bmp"
 $jhPath = "$env:userprofile\jh"
-$githubUrl = "https://raw.githubusercontent.com/mxcezl/Justin-Hack-Windows/master/"
+$githubUrl = "https://raw.githubusercontent.com/mxcezl/Justin-Prank/master/"
 $imagesUrl = "$githubUrl/images/"
 $changerName = "changer.ps1"
 $changerLocalPath = "$jhPath\$changerName"
