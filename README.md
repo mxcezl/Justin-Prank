@@ -15,6 +15,8 @@ powershell -exec bypass -c "(New-Object Net.WebClient).Proxy.Credentials=[Net.Cr
 
 ```
 
+![install](./screenshots/install.png)
+
 ## How it works
 
 The command above will download a powershell script from this repository and run it.
@@ -40,3 +42,19 @@ In the command prompt, type the following command:
 ```powershell
 powershell -exec bypass -c "(New-Object Net.WebClient).Proxy.Credentials=[Net.CredentialCache]::DefaultNetworkCredentials;iwr('https://raw.githubusercontent.com/mxcezl/Justin-Prank/master/unistall/uninstall.ps1')|iex"
 ```
+
+This will remove the scheduled task and the directory that was created.
+
+![uninstall](./screenshots/uninstall.png)
+
+## How to contribute
+
+If you want to contribute, please feel free to open a pull request or an issue.
+
+## License
+
+[MIT](./LICENSE)
+
+## Author
+
+[mxcezl](https://github.com/mxcezl)
